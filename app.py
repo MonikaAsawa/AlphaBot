@@ -52,6 +52,9 @@ def receive_message():
 def verify_fb_token(token_sent):
 	#take token sent by facebook and verify it matches the verify token you sent
 	#if they match, allow the request, else return an error
+    print("ma : Token Sent", token_sent)
+    print("ma : Verify Token", VERIFY_TOKEN)
+    
     if token_sent == VERIFY_TOKEN:
         print("ma : Token verified")
         return request.args.get("hub.challenge")
