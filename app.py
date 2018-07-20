@@ -34,8 +34,10 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
+				print("ma : recipient_id", recipient_id)
                 if message['message'].get('text'):
                     response_sent_text = get_message()
+					print("ma : response_sent_text", response_sent_text)
                     send_message(recipient_id, response_sent_text)
                 #if user sends us a GIF, photo,video, or any other non-text item
                 if message['message'].get('attachments'):
@@ -48,6 +50,7 @@ def verify_fb_token(token_sent):
     #take token sent by facebook and verify it matches the verify token you sent
     #if they match, allow the request, else return an error
     if token_sent == VERIFY_TOKEN:
+		print("ma : Token verified")
         return request.args.get("hub.challenge")
     return 'Invalid verification token'
  
@@ -62,6 +65,7 @@ def get_message():
 def send_message(recipient_id, response):
     #sends user the text message provided via input response parameter
     bot.send_text_message(recipient_id, response)
+	print("ma : Sent Text Message")
     return "success"
  
 if __name__ == "__main__":
