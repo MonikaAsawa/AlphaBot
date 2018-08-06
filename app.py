@@ -29,13 +29,17 @@ def webhook():
 
     This is meant to be used in conjunction with the weather Dialogflow agent
     """
+    
+    print("del Just making sure this is being called")
     req = request.get_json(silent=True, force=True)
     try:
         action = req.get('queryResult').get('action')
     except AttributeError:
         return 'json error'
 
+    print("Going to check action value")
     if action == 'promptProductCategory':
+        print("Action value matched")
         res = product_category(req)
     else:
         log.error('Unexpected action.')
