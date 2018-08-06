@@ -10,7 +10,7 @@ import numpy as np
 
 
 'This function will generate the product category entities'
-def loadProducts(self):
+def loadProducts():
     
     df = pd.read_csv('products_export.csv')
     
@@ -33,7 +33,7 @@ def loadProducts(self):
      
     return ProductsEn
 
-def loadProductCategories(self):
+def loadProductCategories():
     
     print("loadProductCategories called")
     ProductsEn = loadProducts()
@@ -46,7 +46,7 @@ def loadProductCategories(self):
     
     return response
     
-def loadProductTitle(self,productCategory):
+def loadProductTitle(productCategory):
     
     ProductsEn = loadProducts()
     
