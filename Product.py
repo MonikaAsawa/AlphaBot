@@ -12,7 +12,7 @@ import numpy as np
 'This function will generate the product category entities'
 def loadProducts(self):
     
-    df = pd.read_csv('C:\\Users\\Monika Asawa\\Desktop\\redh\\data\\products_export.csv')
+    df = pd.read_csv('products_export.csv')
     
     Products = pd.DataFrame(df, columns=['Handle','Type'])
     print(Products.head())
