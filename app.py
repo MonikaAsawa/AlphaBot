@@ -65,6 +65,10 @@ def product_category(req):
     uses the template responses found in product_responses.py as templates
     """
     parameters = req['queryResult']['parameters']
+    print("del 2" + parameters)
+    
+    parameters =req.get('queryResult').get('parameters')
+    print("del 2" + parameters)
 
     print('Dialogflow Parameters:')
     print(json.dumps(parameters, indent=4))
