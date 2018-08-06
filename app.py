@@ -49,7 +49,7 @@ def webhook():
 
     return make_response(jsonify({'fulfillmentText': res}))
 
-def product_category(req):
+def product_category(self,req):
     """Returns a string containing text with a response to the user
     with all the product categories we have.
 
