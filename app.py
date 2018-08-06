@@ -32,12 +32,16 @@ def webhook():
     
     print("del Just making sure this is being called")
     req = request.get_json(silent=True, force=True)
+    print("del lets print req",req)
+    
     try:
         action = req.get('queryResult').get('action')
     except AttributeError:
         return 'json error'
 
     print("Going to check action value")
+    print("del lets print req",req)
+    
     try:
         if action == 'promptProductCategory':
             print("Action value matched")
