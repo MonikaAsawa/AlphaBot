@@ -45,7 +45,7 @@ def webhook():
     try:
         if action == 'promptProductCategory':
             print("Action value matched")
-            res = product_category(req)
+            res = product_category()
             print("del did method return anything",res)
         else:
             log.error('Unexpected action.')
@@ -58,22 +58,13 @@ def webhook():
 
     return make_response(jsonify({'fulfillmentText': res}))
 
-def product_category(req):
+def product_category():
     """Returns a string containing text with a response to the user
     with all the product categories we have.
 
     uses the template responses found in product_responses.py as templates
     """
     print("del In the function")
-    
-    parameters = req['queryResult']['parameters']
-    print("del 2" + parameters)
-    
-    parameters =req.get('queryResult').get('parameters')
-    print("del 2" + parameters)
-
-    print('Dialogflow Parameters:')
-    print(json.dumps(parameters, indent=4))
 
     response = Product.loadProductCategories()
     print("del did product_category return anything",response)
