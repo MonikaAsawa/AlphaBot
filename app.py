@@ -38,18 +38,22 @@ def webhook():
         return 'json error'
 
     print("Going to check action value")
-    if action == 'promptProductCategory':
-        print("Action value matched")
-        res = product_category(req)
-    else:
-        log.error('Unexpected action.')
+    try:
+        if action == 'promptProductCategory':
+            print("Action value matched")
+            res = product_category(req)
+        else:
+            log.error('Unexpected action.')
+        
+    except TypeError:
+        return 'Type error'
 
     print('Action: ' + action)
     print('Response: ' + res)
 
     return make_response(jsonify({'fulfillmentText': res}))
 
-def product_category(self,req):
+def product_category(req):
     """Returns a string containing text with a response to the user
     with all the product categories we have.
 
