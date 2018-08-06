@@ -35,6 +35,7 @@ def loadProducts(self):
 
 def loadProductCategories(self):
     
+    print("loadProductCategories called")
     ProductsEn = loadProducts()
     
     response = ""

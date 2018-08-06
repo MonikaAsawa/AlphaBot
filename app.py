@@ -46,6 +46,7 @@ def webhook():
         if action == 'promptProductCategory':
             print("Action value matched")
             res = product_category(req)
+            print("del did method return anything",res)
         else:
             log.error('Unexpected action.')
         
@@ -69,7 +70,7 @@ def product_category(req):
     print(json.dumps(parameters, indent=4))
 
     response = Product.loadProductCategories()
-    
+    print("del did product_category return anything",response)
     return response
  
 #We will receive messages that Facebook sends our bot at this endpoint
