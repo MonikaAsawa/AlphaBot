@@ -64,6 +64,8 @@ def product_category(req):
 
     uses the template responses found in product_responses.py as templates
     """
+    print("del In the function")
+    
     parameters = req['queryResult']['parameters']
     print("del 2" + parameters)
     
