@@ -11,7 +11,7 @@ import os
 from flask import Flask, request, make_response, jsonify
 from pymessenger.bot import Bot
 
-import Product
+from Product import loadProductCategories
  
 import json
 
@@ -66,7 +66,7 @@ def product_category():
     """
     print("del In the function")
 
-    response = Product.loadProductCategories()
+    response = loadProductCategories()
     print("del did product_category return anything",response)
     return response
  
