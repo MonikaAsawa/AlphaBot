@@ -8,13 +8,57 @@ Created on Thu Jul 19 19:36:14 2018
 #Python libraries that we need to import for our bot
 import random
 import os
-from flask import Flask, request
+from flask import Flask, request, make_response, jsonify
 from pymessenger.bot import Bot
+
+import Product
  
+import json
+
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot(ACCESS_TOKEN)
+
+log = app.logger
+
+
+@app.route('/', methods=['POST'])
+def webhook():
+    """This method handles the http requests for the Dialogflow webhook
+
+    This is meant to be used in conjunction with the weather Dialogflow agent
+    """
+    req = request.get_json(silent=True, force=True)
+    try:
+        action = req.get('queryResult').get('action')
+    except AttributeError:
+        return 'json error'
+
+    if action == 'promptProductCategory':
+        res = product_category(req)
+    else:
+        log.error('Unexpected action.')
+
+    print('Action: ' + action)
+    print('Response: ' + res)
+
+    return make_response(jsonify({'fulfillmentText': res}))
+
+def product_category(req):
+    """Returns a string containing text with a response to the user
+    with all the product categories we have.
+
+    uses the template responses found in product_responses.py as templates
+    """
+    parameters = req['queryResult']['parameters']
+
+    print('Dialogflow Parameters:')
+    print(json.dumps(parameters, indent=4))
+
+    response = Product.loadProductCategories()
+    
+    return response
  
 #We will receive messages that Facebook sends our bot at this endpoint
 @app.route("/", methods=['GET', 'POST'])
