@@ -24,13 +24,12 @@ bot = Bot(ACCESS_TOKEN)
 
 log = app.logger
 
-@app.route('/', methods=['POST'])
 def setup_app(app):
    # All your initialization code
    print("Setup_app method starts")
    
    # 1 DEFINE THE URL
-   #url = 'https://api.dialogflow.com/v1/entities?v=20150910'
+   url = 'https://api.dialogflow.com/v1/entities?v=20150910'
    
    # 2 DEFINE THE HEADERS    
    headers = {'Authorization': 'Bearer '+DEVELOPER_ACCESS_TOKEN,'Content-Type': 'application/json'}
@@ -50,7 +49,7 @@ def setup_app(app):
   })
    
    # 4 MAKE THE REQUEST 
-   response = request.post(headers=headers,data=data)
+   response = request.post(url,headers=headers,data=data)
    print (response.json)
    
    print("Setup_app method ends")
