@@ -18,14 +18,42 @@ import json
 app = Flask(__name__)
 ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
+DEVELOPER_ACCESS_TOKEN = os.environ['DIALOGFLOW_DEVELOPER_ACCESS_TOKEN']
+
 bot = Bot(ACCESS_TOKEN)
 
 log = app.logger
 
-
+@app.route('/', methods=['POST'])
 def setup_app(app):
    # All your initialization code
-   print("@@@@@@@@SET UP THING WORKS%%%%%%%%%%%%%")
+   print("Setup_app method starts")
+   
+   # 1 DEFINE THE URL
+   #url = 'https://api.dialogflow.com/v1/entities?v=20150910'
+   
+   # 2 DEFINE THE HEADERS    
+   headers = {'Authorization': 'Bearer '+DEVELOPER_ACCESS_TOKEN,'Content-Type': 'application/json'}
+
+   # 3 CREATE THE DATA
+   data = json.dumps({
+     "name": "fruit",
+     "entries": [
+     {
+       "synonyms": ["apple", "red apple"],
+       "value": "apple"
+     },
+     {
+       "value": "banana"
+     }
+   ]
+  })
+   
+   # 4 MAKE THE REQUEST 
+   response = request.post(headers=headers,data=data)
+   print (response.json)
+   
+   print("Setup_app method ends")
 
 setup_app(app)
 
