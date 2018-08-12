@@ -61,7 +61,13 @@ log = app.logger
 
 
 def list_entity_types(project_id):
+    
+    print("list_entity_types method starts")
+    
     import dialogflow_v2 as dialogflow
+    
+    print("GOOGLE_APPLICATION_CREDENTIALS",GOOGLE_APPLICATION_CREDENTIALS)
+    
     entity_types_client = dialogflow.EntityTypesClient()
 
     parent = entity_types_client.project_agent_path(project_id)
