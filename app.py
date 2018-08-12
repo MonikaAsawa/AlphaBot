@@ -23,6 +23,12 @@ bot = Bot(ACCESS_TOKEN)
 log = app.logger
 
 
+def setup_app(app):
+   # All your initialization code
+   print("@@@@@@@@SET UP THING WORKS%%%%%%%%%%%%%")
+
+setup_app(app)
+
 @app.route('/', methods=['POST'])
 def webhook():
     """This method handles the http requests for the Dialogflow webhook
