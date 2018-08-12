@@ -137,4 +137,6 @@ def send_message(recipient_id, response):
 	return "success"
  
 if __name__ == "__main__":
-	app.run()
+    print("Main Method starts")
+    app.run()
+    print("Main Method ends")
