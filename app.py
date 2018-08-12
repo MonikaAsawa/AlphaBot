@@ -24,37 +24,55 @@ bot = Bot(ACCESS_TOKEN)
 
 log = app.logger
 
-def setup_app(app):
-   # All your initialization code
-   print("Setup_app method starts")
-   
-   # 1 DEFINE THE URL
-   url = 'https://api.dialogflow.com/v1/entities?v=20150910'
-   
-   # 2 DEFINE THE HEADERS    
-   headers = {'Authorization': 'Bearer '+DEVELOPER_ACCESS_TOKEN,'Content-Type': 'application/json'}
+#==============================================================================
+# def setup_app(app):
+#    # All your initialization code
+#    print("Setup_app method starts")
+#    
+#    # 1 DEFINE THE URL
+#    url = 'https://api.dialogflow.com/v1/entities?v=20150910'
+#    
+#    # 2 DEFINE THE HEADERS    
+#    headers = {'Authorization': 'Bearer '+DEVELOPER_ACCESS_TOKEN,'Content-Type': 'application/json'}
+# 
+#    # 3 CREATE THE DATA
+#    data = json.dumps({
+#      "name": "fruit",
+#      "entries": [
+#      {
+#        "synonyms": ["apple", "red apple"],
+#        "value": "apple"
+#      },
+#      {
+#        "value": "banana"
+#      }
+#    ]
+#   })
+#    
+#    # 4 MAKE THE REQUEST 
+#    response = request.post(url,headers=headers,data=data)
+#    print (response.json)
+#    
+#    print("Setup_app method ends")
+# 
+# setup_app(app)
+#==============================================================================
 
-   # 3 CREATE THE DATA
-   data = json.dumps({
-     "name": "fruit",
-     "entries": [
-     {
-       "synonyms": ["apple", "red apple"],
-       "value": "apple"
-     },
-     {
-       "value": "banana"
-     }
-   ]
-  })
-   
-   # 4 MAKE THE REQUEST 
-   response = request.post(url,headers=headers,data=data)
-   print (response.json)
-   
-   print("Setup_app method ends")
 
-setup_app(app)
+def list_entity_types(project_id):
+    import dialogflow_v2 as dialogflow
+    entity_types_client = dialogflow.EntityTypesClient()
+
+    parent = entity_types_client.project_agent_path(project_id)
+
+    entity_types = entity_types_client.list_entity_types(parent)
+
+    for entity_type in entity_types:
+        print('Entity type name: {}'.format(entity_type.name))
+        print('Entity type display name: {}'.format(entity_type.display_name))
+        print('Number of entities: {}\n'.format(len(entity_type.entities)))
+
+list_entity_types("alphabotagent")
 
 @app.route('/', methods=['POST'])
 def webhook():
