@@ -12,7 +12,8 @@ def setUpApp():
     
     print("setUpApp in AppInit starts")
 
-    productCategories = loadProducts.keys()
+    ProductsEn = loadProducts()
+    productCategories = ProductsEn.keys()
     
     print("Number of productCategories to be loaded",len(productCategories))
     
