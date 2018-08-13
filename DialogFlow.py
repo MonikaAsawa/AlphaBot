@@ -10,7 +10,7 @@ import dialogflow_v2 as dialogflow
 def create_entity_type(project_id, display_name, kind):
     """Create an entity type with the given display name."""
 
-    kind = 'KIND_UNSPECIFIED'
+    kind = 'KIND_MAP'
     
     entity_types_client = dialogflow.EntityTypesClient()
 
