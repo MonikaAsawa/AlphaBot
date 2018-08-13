@@ -18,7 +18,7 @@ def loadProducts():
     print(Products.head())
     
     # mark "Other Exiciting Products" values as missing for Product having missing Product Category
-    Products['Type'] = Products['Type'].replace(np.NaN,'Other Exiciting Products')
+    Products['Type'] = Products['Type'].replace(np.NaN,'Other_Exiciting_Products')
     
     grouped = Products.groupby(['Type'])
     
