@@ -20,12 +20,20 @@ def entity_name_validate_n_update(entityName):
     
     print("entity_name_validate_n_update method started")
     
-    if re.search(r"[A-Za-z]{1}[A-Za-z0-9_-]*",entityName):
-        return entityName
+    
+    if re.search(r"^[a-zA-Z][[_|a-zA-Z|0-9|-]*]+",entityName):
+        if re.search(r"(^\s)+",entityName):
+            return entityName
+        else:
+            print("Validation failed 1")
+            return "entityName_" + randint(100, 999)
     else:
+        print("Validation failed 2")
         return "entityName_" + randint(100, 999)
     
     print("entity_name_validate_n_update method ended")
+    
+
         
 # Helper to get entity_type_id from display name.
 def _get_entity_type_ids(display_name):
