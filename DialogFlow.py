@@ -22,18 +22,12 @@ def entity_name_validate_n_update(entityName):
     
     print("entity_name_validate_n_update method started")
     
-    
-    if re.search(r"^[a-zA-Z][[_|a-zA-Z|0-9|-]*]+",entityName):
-        if re.search(r"(\s)+",entityName):
-            print("Validation failed: Contains space")
-            return "entityName_" + str(randint(100, 999))
-        else:
-            return entityName
-            
-    else:
-        print("Validation failed 2")
+    if re.search(r"(\s)+",entityName):
+        print("Validation failed: Contains space")
         return "entityName_" + str(randint(100, 999))
-    
+    else:
+        return entityName
+
     print("entity_name_validate_n_update method ended")
     
 
