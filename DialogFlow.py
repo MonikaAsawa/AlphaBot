@@ -8,6 +8,7 @@ Created on Sun Aug  5 16:04:14 2018
 import dialogflow_v2 as dialogflow
 import re
 from random import randint
+import google.api_core.exceptions
 from google.api_core.exceptions import NotFound
 
 project_id="alphabotagent"
