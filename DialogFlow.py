@@ -26,10 +26,10 @@ def entity_name_validate_n_update(entityName):
             return entityName
         else:
             print("Validation failed 1")
-            return "entityName_" + randint(100, 999)
+            return "entityName_" + str(randint(100, 999))
     else:
         print("Validation failed 2")
-        return "entityName_" + randint(100, 999)
+        return "entityName_" + str(randint(100, 999))
     
     print("entity_name_validate_n_update method ended")
     
