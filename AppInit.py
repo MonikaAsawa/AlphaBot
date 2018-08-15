@@ -12,7 +12,8 @@ def setUpApp():
     
     print("setUpApp in AppInit starts")
 
-    #delete_all_existing_entities()
+    delete_all_existing_entities()
+    print("Existing entities deleted")
     
     ProductsEn = loadProducts()
     productCategories = ProductsEn.keys()
