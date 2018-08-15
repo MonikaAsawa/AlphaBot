@@ -41,12 +41,6 @@ def setup_app():
 setup_app()
 
 
-
-
-        
-list_entity_types("alphabotagent")
-
-
 @app.route('/', methods=['POST'])
 def webhook():
     """This method handles the http requests for the Dialogflow webhook
