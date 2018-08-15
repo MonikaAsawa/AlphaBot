@@ -7,7 +7,7 @@ Created on Sun Aug 12 18:52:07 2018
 
 from DialogFlow import create_entity_type,delete_all_existing_entities
 from Product import loadProducts
-from google.api_core.exceptions import RESOURCE_EXHAUSTED
+from google.api_core.exceptions import ResourceExhausted
 
 def setUpApp():
     
@@ -28,7 +28,7 @@ def setUpApp():
             print(productType)
             create_entity_type(productType,productType)
         
-    except RESOURCE_EXHAUSTED:
+    except ResourceExhausted:
         print("Either out of resource quota or reaching rate limiting. The client should look for google.rpc.QuotaFailure error detail for more information.")
         
     #set up entity values in bulk
