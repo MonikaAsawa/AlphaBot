@@ -8,6 +8,7 @@ Created on Sun Aug  5 16:04:14 2018
 import dialogflow_v2 as dialogflow
 import re
 from random import randint
+from google.api_core.exceptions import NotFound
 
 project_id="alphabotagent"
 
@@ -130,9 +131,11 @@ def get_entity_displayNames():
         for entity_type in entity_types:
             entity_displayNames.append(entity_type.display_name)    
         
+    except NotFound:
+            print("EntityType not found")
     except (dialogflow.api_core.exceptions) as error:
         return error
-    
+     
     print("get_entity_displayNames method ended")
     
     return entity_displayNames
