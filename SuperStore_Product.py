@@ -50,7 +50,7 @@ def recommend_selling_prodCat():
         response.append(i)
         
     #response = response[1:]
-    print(response)
+    #print(response)
     
     return response
 #----------------------------

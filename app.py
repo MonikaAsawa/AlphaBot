@@ -72,7 +72,7 @@ def webhook():
         return 'Type error'
 
     print('Action: ' + action)
-    print('Response: ' + res)
+    #print('Response: ' + res)
 
     #return make_response(jsonify({'fulfillmentText': res}))
     return make_response(jsonify({'fulfillmentMessages': res}))
