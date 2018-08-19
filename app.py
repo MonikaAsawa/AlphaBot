@@ -74,7 +74,7 @@ def webhook():
     print('Action: ' + action)
     #print('Response: ' + res)
     
-    res =' "fulfillmentMessages": [{ "text": {"text": ["Text defined in Dialogflow console for the intent that was matched"]}}]'
+    res =" 'fulfillmentMessages': [{'text': {'text': ['Good day1234! What can I do for you today?']}}]"
 
     #return make_response(jsonify({'fulfillmentText': res}))
     return make_response(res)
