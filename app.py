@@ -74,7 +74,8 @@ def webhook():
     print('Action: ' + action)
     print('Response: ' + res)
 
-    return make_response(jsonify({'fulfillmentText': res}))
+    #return make_response(jsonify({'fulfillmentText': res}))
+    return make_response(jsonify({'fulfillmentMessages': res}))
 
 def product_category():
     """Returns a string containing text with a response to the user
