@@ -11,7 +11,7 @@ import os
 from flask import Flask, request, make_response, jsonify
 from pymessenger.bot import Bot
 
-from Product import loadProductCategories
+from SuperStore_Product import recommend_selling_prodCat
 from AppInit import setUpApp
  
 import json
@@ -38,7 +38,7 @@ def setup_app():
     
     print("Setup_app method ends")
  
-setup_app()
+#setup_app()
 
 
 @app.route('/', methods=['POST'])
@@ -84,7 +84,7 @@ def product_category():
     """
     print("del In the function")
 
-    response = loadProductCategories()
+    response = recommend_selling_prodCat()
     print("del did product_category return anything",response)
     return response
  
