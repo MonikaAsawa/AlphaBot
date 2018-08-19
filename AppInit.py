@@ -6,7 +6,7 @@ Created on Sun Aug 12 18:52:07 2018
 """
 
 from DialogFlow import create_entity_type,delete_all_existing_entities
-from Product import loadProducts
+from SuperStore_Product import loadProducts
 from google.api_core.exceptions import ResourceExhausted
 
 def setUpApp():

@@ -35,7 +35,7 @@ def setup_app():
     
     print("Setup_app method ends")
  
-#setup_app()
+setup_app()
 
 
 @app.route('/', methods=['POST'])

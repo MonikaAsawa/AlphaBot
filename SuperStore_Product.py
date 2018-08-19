@@ -63,3 +63,48 @@ def recommend_selling_prodCat():
     
     return response
 #----------------------------
+
+
+def recommend_selling_prodNames(selected_sub_category):
+    
+    recent_quarter_data = provide_recent_quarter_data()
+    
+    recent_quarter_data = recent_quarter_data.loc[recent_quarter_data['Sub-Category'] == selected_sub_category]
+    
+    product_freq = pd.DataFrame(recent_quarter_data.groupby('Product Name')['Quantity'].sum())
+    
+    product_freq = product_freq.sort_values(by="Quantity", ascending =False)
+    
+    top_3_product_names = product_freq[:TOP_HOW_MANY]
+    top_3_product_names.index.tolist()
+    
+    response =  'These are our top products names'
+    for i in top_3_product_names.index.tolist():
+        response += "\n" + i
+        
+    print(response)
+    
+    return response
+
+'This function will generate the product category entities'
+def loadProducts():
+
+    ordersDf = pd.read_csv('SuperStoreData.csv', index_col = ['Order Date'], parse_dates = True)
+
+    ordersDf = ordersDf.loc[ordersDf['Category'] == 'Furniture']
+    
+    Products = pd.DataFrame(ordersDf, columns=['Sub-Category','Product Name'],index =None)
+    
+    Products.columns = ['Product Category','Product Name']
+    
+    grouped = Products.groupby(['Product Category'])
+    
+    ProductsEn = {}
+    
+    for name, group in grouped:
+        print(name)
+        print(group)
+        sunDF=group['Sub-Category']
+        ProductsEn[name] = sunDF.values.T.tolist() 
+     
+    return ProductsEn
