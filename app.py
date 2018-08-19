@@ -13,8 +13,6 @@ from pymessenger.bot import Bot
 
 from SuperStore_Product import recommend_selling_prodCat
 from AppInit import setUpApp
- 
-import json
 
 app = Flask(__name__)
 
@@ -74,10 +72,10 @@ def webhook():
     print('Action: ' + action)
     #print('Response: ' + res)
     
-    res =" 'fulfillmentMessages': [{'text': {'text': ['Good day1234! What can I do for you today?']}}]"
+    #res =" 'fulfillmentMessages': [{'text': {'text': ['Good day1234! What can I do for you today?']}}]"
 
     #return make_response(jsonify({'fulfillmentText': res}))
-    return make_response(jsonify(res))
+    return make_response(jsonify({'fulfillmentMessages': res}))
     
 def product_category():
     """Returns a string containing text with a response to the user
