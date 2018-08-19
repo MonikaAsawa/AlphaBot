@@ -73,9 +73,11 @@ def webhook():
 
     print('Action: ' + action)
     #print('Response: ' + res)
+    
+    res =' "fulfillmentMessages": [{ "text": {"text": ["Text defined in Dialogflow console for the intent that was matched"]}}]'
 
     #return make_response(jsonify({'fulfillmentText': res}))
-    return make_response(jsonify({'fulfillmentMessages': res}))
+    return make_response(res)
 
 def product_category():
     """Returns a string containing text with a response to the user
