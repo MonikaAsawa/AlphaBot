@@ -104,7 +104,7 @@ def loadProducts():
     for name, group in grouped:
         print(name)
         print(group)
-        sunDF=group['Sub-Category']
+        sunDF=group['Product Category']
         ProductsEn[name] = sunDF.values.T.tolist() 
      
     return ProductsEn
