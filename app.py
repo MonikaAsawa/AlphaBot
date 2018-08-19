@@ -77,8 +77,8 @@ def webhook():
     res =" 'fulfillmentMessages': [{'text': {'text': ['Good day1234! What can I do for you today?']}}]"
 
     #return make_response(jsonify({'fulfillmentText': res}))
-    return make_response(res)
-
+    return make_response(jsonify(res))
+    
 def product_category():
     """Returns a string containing text with a response to the user
     with all the product categories we have.
