@@ -17,16 +17,16 @@ def setUpApp():
     try:
         
         '1) Delete Existing Entities'
-        delete_all_existing_entities()
-        print("Existing entities deleted")
+        #delete_all_existing_entities()
+        #print("Existing entities deleted")
         
         #Wait for 60 seconds
         #print("Going for sleep for 45 seconds")
         #time.sleep(45)
   
         '2) Load Product Entity Type'
-        productCategories = loadProductCat()
-        createEntities(productCategories)
+        #productCategories = loadProductCat()
+        #createEntities(productCategories)
         
         #Wait for 60 seconds
         #print("Going for sleep for 45 seconds")
