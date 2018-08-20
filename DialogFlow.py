@@ -216,6 +216,11 @@ def create_productNames(productCategories):
     print("create_productNames method started")
     
     try:
+        
+        print("Going for sleep for 45 seconds")
+        #Wait for 60 seconds
+        time.sleep(60)
+        
         count = 0
         
         print("Product Categories :: ",productCategories )
