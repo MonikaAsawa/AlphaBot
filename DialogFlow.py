@@ -256,7 +256,7 @@ def create_productNames(productCategories):
                             
                         except InvalidArgument as error:
                             print("Error generated while creating Entity", error)
-                            continue
+                            #continue
                         
                         except ResourceExhausted as error:
                             print("Error generated while Entity", error)
