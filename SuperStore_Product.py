@@ -109,6 +109,8 @@ def loadProductCat():
     
     grouped = loadProducts()
     
+    grouped = grouped.loc[grouped['Product_Category'] == "Furnishings"]
+    
     ProductsEn = grouped.Product_Category.unique().tolist()
      
     return ProductsEn
