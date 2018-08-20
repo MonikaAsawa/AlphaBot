@@ -65,7 +65,7 @@ def recommend_selling_prodCat():
 #----------------------------
 
 
-def recommend_selling_prodNames(selected_sub_category):
+def suggest_selling_prodNames(selected_sub_category):
     
     recent_quarter_data = provide_recent_quarter_data()
     
@@ -125,3 +125,26 @@ def loadProductNames(selected_sub_category):
     ProductNamesEn = Products_sb.Product_Name.unique().tolist()
      
     return ProductNamesEn
+
+
+def check_if_product_selected(parameters):
+    
+    params = {}
+    
+    tableSelection = parameters.get('Tables')
+    chairSelection = parameters.get('Chairs')
+    furnishingsSelection = parameters.get('Furnishings')
+    bookcaseSelection = parameters.get('Bookcases')
+    
+    if(len(tableSelection)==0 & len(chairSelection)==0 & len(furnishingsSelection)==0 & len(bookcaseSelection)==0):
+        error_response = 'Please specify the correct product name you would like to buy'
+        
+    params['TableSelection'] = parameters.get('Tables')
+    params['ChairSelection'] = parameters.get('Chairs')
+    params['FurnishingsrSelection'] = parameters.get('Furnishings')
+    params['BookcasesSelection'] = parameters.get('Bookcases')
+    
+    return error_response.strip(), params 
+
+def recommendProductsNames(params):
+    return 'Humpty Dumpty sat on a wall'

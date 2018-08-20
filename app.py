@@ -10,7 +10,7 @@ import os
 from flask import Flask, request, make_response, jsonify
 from pymessenger.bot import Bot
 
-from SuperStore_Product import recommend_selling_prodCat, recommend_selling_prodNames
+from SuperStore_Product import recommend_selling_prodCat, suggest_selling_prodNames, check_if_product_selected, recommendProductsNames
 from AppInit import setUpApp
 
 import json
@@ -37,7 +37,7 @@ def setup_app():
     
     print("Setup_app method ends")
  
-setup_app()
+#setup_app()
 
 
 @app.route('/', methods=['POST'])
@@ -69,6 +69,12 @@ def webhook():
             print("recommendProducts Action value matched")
             res = recommendProducts(req)
             print("del did method return anything",res)
+            
+        elif action == 'suggestTrendingProducts':
+            print("recommendProducts Action value matched")
+            res = suggestProducts(req)
+            print("del did method return anything",res)
+            
         else:
             log.error('Unexpected action.')
         
@@ -96,7 +102,7 @@ def product_category():
     return response
 
 
-def recommendProducts(req):
+def suggestProducts(req):
     parameters = req['queryResult']['parameters']
     
     print('Dialogflow Parameters:')
@@ -104,12 +110,32 @@ def recommendProducts(req):
     
     selected_sub_category = parameters.get('productCategory')
     
-    response = recommend_selling_prodNames(selected_sub_category)
+    response = suggest_selling_prodNames(selected_sub_category)
     
     print("del did product_category return anything",response)
     return response
 
- 
+def recommendProducts(req):
+    parameters = req['queryResult']['parameters']
+    
+    print('Dialogflow Parameters:')
+    print(json.dumps(parameters, indent=4))
+    
+    # Initialize error and params
+    error = ''
+    params = {}
+    
+    # validate request parameters, return an error if there are issues
+    error, params = check_if_product_selected(parameters)
+    
+    if len(error) > 0:
+        return error
+    
+    response = recommendProductsNames(params)
+    
+    print("del did product_category return anything",response)
+    return response
+    
 if __name__ == "__main__":
     print("Main Method starts")
     app.run()
