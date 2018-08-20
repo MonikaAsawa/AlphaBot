@@ -151,8 +151,6 @@ def get_entity_displayNames():
         
     except NotFound:
             print("EntityType not found")
-    except GError as error:
-        return error
      
     print("get_entity_displayNames method ended")
     
@@ -172,12 +170,15 @@ def delete_all_existing_entities():
             
             for entity_type_id in entity_type_ids:
                 
-                delete_entity_type(entity_type_id)
+                try:
+                    delete_entity_type(entity_type_id)
     
-    except NotFound:
-        print("EntityType not found")
+                except NotFound as error:
+                    print(error)
+                    print("EntityType not found", entityName)
+                    continue
             
-    except GError as error:
+    except NotFound as error:
         return error
     
     print("delete_all_existing_entities method ended")
@@ -215,6 +216,7 @@ def create_productNames(productCategories):
     print("create_productNames method started")
     
     try:
+        count = 0
         
         print("Product Categories :: ",productCategories )
         
@@ -236,17 +238,15 @@ def create_productNames(productCategories):
                     
                     productNames = loadProductNames(entityName)
                     
-                    count = 0
-                    
                     for productName in productNames:
                         
                         print("Creating Product Name: ", productName)
                         
                         count+=1
                         
-                        if(count == 150):
+                        if(count % 150 == 0):
                             try:
-                                print("Going for sleep for 6 seconds")
+                                print("Going for sleep for 60 seconds")
                                 #Wait for 60 seconds
                                 time.sleep(60)
                                 
@@ -268,7 +268,5 @@ def create_productNames(productCategories):
     except NotFound:
         print("EntityType not found")
             
-    except GError as error:
-        return error
     
     print("create_productNames method ended")

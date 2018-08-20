@@ -21,14 +21,16 @@ def setUpApp():
         print("Existing entities deleted")
         
         #Wait for 60 seconds
-        time.sleep(60)
+        print("Going for sleep for 45 seconds")
+        time.sleep(45)
   
         '2) Load Product Entity Type'
         productCategories = loadProductCat()
         createEntities(productCategories)
         
         #Wait for 60 seconds
-        time.sleep(60)
+        print("Going for sleep for 45 seconds")
+        time.sleep(45)
         
         '3) Load Product Entity Type'
     
