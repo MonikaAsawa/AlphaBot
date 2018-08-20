@@ -244,16 +244,6 @@ def create_productNames(productCategories):
                         
                         count+=1
                         
-                        if(count % 150 == 0):
-                            try:
-                                print("Going for sleep for 60 seconds")
-                                #Wait for 60 seconds
-                                time.sleep(60)
-                                
-                            except KeyboardInterrupt:
-                                print('\n\nKeyboard exception received. Exiting.')
-                                exit()
-                        
                         try:
                             create_entity(entity_type_id, productName, productName)
                             
@@ -264,6 +254,16 @@ def create_productNames(productCategories):
                         except ResourceExhausted:
                              print("Either out of resource quota or reaching rate limiting. The client should look for google.rpc.QuotaFailure error detail for more information.")
         
+                        if(count % 50 == 0):
+                            try:
+                                print("Going for sleep for 45 seconds")
+                                #Wait for 60 seconds
+                                time.sleep(45)
+                                
+                            except KeyboardInterrupt:
+                                print('\n\nKeyboard exception received. Exiting.')
+                                exit()
+                        
     
     except NotFound:
         print("EntityType not found")
