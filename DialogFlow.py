@@ -8,8 +8,10 @@ Created on Sun Aug  5 16:04:14 2018
 import dialogflow_v2 as dialogflow
 import re
 from random import randint
-import google.api_core.exceptions
+import google.api_core.exceptions as GError
 from google.api_core.exceptions import NotFound
+
+from SuperStore_Product import loadProductNames
 
 project_id="alphabotagent"
 
@@ -29,9 +31,7 @@ def entity_name_validate_n_update(entityName):
         return entityName
 
     print("entity_name_validate_n_update method ended")
-    
-
-        
+          
 # Helper to get entity_type_id from display name.
 def _get_entity_type_ids(display_name):
     
@@ -86,7 +86,7 @@ def create_entity_type(display_name, kind):
     
         response = entity_types_client.create_entity_type(parent, entity_type)
         
-    except (dialogflow.api_core.exceptions) as error:
+    except GError as error:
         return error
     
     print('Entity type created: \n{}'.format(response))
@@ -107,7 +107,7 @@ def list_entity_types():
             print('Entity type display name: {}'.format(entity_type.display_name))
             print('Number of entities: {}\n'.format(len(entity_type.entities)))
     
-    except (dialogflow.api_core.exceptions) as error:
+    except GError as error:
         return error
     
     print("list_entity_types method ended")
@@ -129,7 +129,7 @@ def get_entity_displayNames():
         
     except NotFound:
             print("EntityType not found")
-    except (dialogflow.api_core.exceptions) as error:
+    except GError as error:
         return error
      
     print("get_entity_displayNames method ended")
@@ -151,9 +151,64 @@ def delete_all_existing_entities():
             for entity_type_id in entity_type_ids:
                 
                 delete_entity_type(entity_type_id)
-                
-    except (dialogflow.api_core.exceptions) as error:
+    
+    except NotFound:
+        print("EntityType not found")
+            
+    except GError as error:
         return error
     
     print("delete_all_existing_entities method ended")
+
+
+# [START dialogflow_create_entity]
+def create_entity(entity_type_id, entity_value, synonyms):
+    """Create an entity of the given entity type."""
+
+    # Note: synonyms must be exactly [entity_value] if the
+    # entity_type's kind is KIND_LIST
+    synonyms = synonyms or [entity_value]
+
+    entity_type_path = entity_types_client.entity_type_path(
+        project_id, entity_type_id)
+
+    entity = dialogflow.types.EntityType.Entity()
+    entity.value = entity_value
+    entity.synonyms.extend(synonyms)
+
+    response = entity_types_client.batch_create_entities(
+        entity_type_path, [entity])
+
+    print('Entity created: {}'.format(response))
+# [END dialogflow_create_entity]
+
+def create_productNames(productCategories):
+    
+    print("delete_all_existing_entities method started")
+    
+    try:
+        
+        entity_displayNames = get_entity_displayNames()
+        
+        for entityName in entity_displayNames:
             
+            if entityName in productCategories:
+                
+                print("Generating entities of type: ",entityName)
+                
+                entity_type_ids = _get_entity_type_ids(entityName)
+            
+                for entity_type_id in entity_type_ids:
+                    
+                    for productName in loadProductNames(entityName):
+                        
+                        create_entity(entity_type_id, productName, productName)
+     
+    
+    except NotFound:
+        print("EntityType not found")
+            
+    except GError as error:
+        return error
+    
+    print("delete_all_existing_entities method ended")

@@ -86,7 +86,7 @@ def recommend_selling_prodNames(selected_sub_category):
     
     return response
 
-'This function will generate the product category entities'
+
 def loadProducts():
 
     ordersDf = pd.read_csv('SuperStoreData.csv', index_col = ['Order Date'], parse_dates = True)
@@ -95,16 +95,28 @@ def loadProducts():
     
     Products = pd.DataFrame(ordersDf, columns=['Sub-Category','Product Name'],index =None)
     
-    Products.columns = ['Product Category','Product Name']
+    Products.columns = ['Product_Category','Product_Name']
     
-    grouped = Products.groupby(['Product Category'])
+    grouped = Products.groupby(['Product_Category'])
+     
+    return grouped
+
+'This function will generate the product category as entity types'
+def loadProductCat():
     
-    ProductsEn = {}
+    Products = loadProducts()
     
-    for name, group in grouped:
-        print(name)
-        print(group)
-        sunDF=group['Product Name']
-        ProductsEn[name] = sunDF.values.T.tolist() 
+    ProductsEn = Products.Product_Category.unique().tolist()
      
     return ProductsEn
+
+'This function will generate the product names entities'
+def loadProductNames(selected_sub_category):
+    
+    Products = loadProducts()
+    
+    Products_sb = Products.loc[Products['Product_Category'] == selected_sub_category]
+    
+    ProductNamesEn = Products_sb.Product_Name.unique().tolist()
+     
+    return ProductNamesEn
