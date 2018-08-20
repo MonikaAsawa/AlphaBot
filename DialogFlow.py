@@ -64,9 +64,9 @@ def delete_entity_type(entity_type_id):
     
         entity_types_client.delete_entity_type(entity_type_path)
     
-    except (dialogflow.api_core.exceptions) as error:
-        return error
-
+    except NotFound:
+        print("EntityType not found")
+            
     print("delete_entity_type method ended")
         
 def create_entity_type(display_name, kind):
@@ -245,22 +245,6 @@ def create_productNames(productCategories):
                     
                     for productName in productNames:
                         
-                        print("Creating Product Name: ", productName)
-                        
-                        count+=1
-                        
-                        productName.replace('"','')
-                        
-                        try:
-                            create_entity(entity_type_id, productName, productName)
-                            
-                        except InvalidArgument as error:
-                            print("Error creatinf Entity", error)
-                            continue
-                        
-                        except ResourceExhausted:
-                             print("Either out of resource quota or reaching rate limiting. The client should look for google.rpc.QuotaFailure error detail for more information.")
-        
                         if(count % 100 == 0):
                             try:
                                 print("Going for sleep for 45 seconds")
@@ -271,9 +255,27 @@ def create_productNames(productCategories):
                                 print('\n\nKeyboard exception received. Exiting.')
                                 exit()
                         
-    
-    except NotFound:
-        print("EntityType not found")
-            
+                        print("Creating Product Name: ", productName)
+                        
+                        count+=1
+                        
+                        productName.replace('"','')
+                        
+                        try:
+                            create_entity(entity_type_id, productName, productName)
+                            
+                        except InvalidArgument as error:
+                            print("Error generated while creating Entity", error)
+                            continue
+                        
+                        except ResourceExhausted as error:
+                            print("Error generated while Entity", error)
+                            print("Going for sleep for 45 seconds")
+                            #Wait for 60 seconds
+                            time.sleep(45)
+                            continue
+                        
+    except ResourceExhausted as error:
+        print("ResourceExhausted", error)
     
     print("create_productNames method ended")
