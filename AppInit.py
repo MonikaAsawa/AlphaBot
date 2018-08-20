@@ -22,12 +22,12 @@ def setUpApp():
         
         
         '2) Load Product Entity Type'
-        #productCategories = loadProductCat()
-        #print("Number of productCategories to be loaded",len(productCategories))
+        productCategories = loadProductCat()
+        print("Number of productCategories to be loaded",len(productCategories))
     
-        #for productType in productCategories:
-        #    print(productType)
-        #   create_entity_type(productType,productType)
+        for productType in productCategories:
+            print(productType)
+            create_entity_type(productType,productType)
         
         '3) Load Product Entity Type'
     
