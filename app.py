@@ -13,6 +13,8 @@ from pymessenger.bot import Bot
 from SuperStore_Product import recommend_selling_prodCat
 from AppInit import setUpApp
 
+import json
+
 app = Flask(__name__)
 
 #==============================================================================
@@ -59,8 +61,13 @@ def webhook():
     
     try:
         if action == 'promptProductCategory':
-            print("Action value matched")
+            print("promptProductCategory Action value matched")
             res = product_category()
+            print("del did method return anything",res)
+            
+        elif action == 'recommendProducts':
+            print("recommendProducts Action value matched")
+            res = recommendProducts(req)
             print("del did method return anything",res)
         else:
             log.error('Unexpected action.')
@@ -87,6 +94,20 @@ def product_category():
     response = recommend_selling_prodCat()
     print("del did product_category return anything",response)
     return response
+
+
+def recommendProducts(req):
+    parameters = req['queryResult']['parameters']
+    
+    print('Dialogflow Parameters:')
+    print(json.dumps(parameters, indent=4))
+    
+    parameters.get('productCategory')
+    
+    response = "Working on it!!!"
+    print("del did product_category return anything",response)
+    return response
+
  
 if __name__ == "__main__":
     print("Main Method starts")
