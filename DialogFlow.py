@@ -9,7 +9,7 @@ import dialogflow_v2 as dialogflow
 import re
 from random import randint
 import google.api_core.exceptions as GError
-from google.api_core.exceptions import NotFound
+from google.api_core.exceptions import NotFound,InvalidArgument
 
 from SuperStore_Product import loadProductNames
 
@@ -179,7 +179,7 @@ def create_entity(entity_type_id, entity_value, synonyms):
     entity.synonyms.extend(synonyms)
 
     response = entity_types_client.batch_create_entities(
-        entity_type_path, [entity])
+        entity_type_path, entity)
 
     print('Entity created: {}'.format(response))
     
@@ -218,8 +218,12 @@ def create_productNames(productCategories):
                         
                         print("Creating Product Name: ", productName)
                         
-                        create_entity(entity_type_id, productName, productName)
-     
+                        try:
+                            create_entity(entity_type_id, productName, productName)
+                            
+                        except InvalidArgument as error:
+                            print("Error creatinf Entity", error)
+                            continue
     
     except NotFound:
         print("EntityType not found")
