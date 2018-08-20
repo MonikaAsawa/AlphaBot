@@ -208,13 +208,13 @@ def create_productNames(productCategories):
                 
                 entity_type_ids = _get_entity_type_ids(entityName)
                 
-                print("No of entity type ids are: ",len[entity_type_ids])
+                print("No of entity type ids are: ", entity_type_ids)
             
                 for entity_type_id in entity_type_ids:
                     
                     productNames = loadProductNames(entityName)
                     
-                    print("No of product Names: ",len[productNames])
+                    print("No of product Names: ", productNames)
                     
                     for productName in productNames:
                         
