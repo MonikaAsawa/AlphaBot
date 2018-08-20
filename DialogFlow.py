@@ -190,7 +190,7 @@ def create_entity(entity_type_id, entity_value, synonyms):
 
     # Note: synonyms must be exactly [entity_value] if the
     # entity_type's kind is KIND_LIST
-    synonyms = entity_value
+    synonyms = [entity_value]
 
     entity_type_path = entity_types_client.entity_type_path(
         project_id, entity_type_id)
@@ -200,7 +200,7 @@ def create_entity(entity_type_id, entity_value, synonyms):
     entity.synonyms.extend(synonyms)
 
     response = entity_types_client.batch_create_entities(
-        entity_type_path, entity)
+        entity_type_path, [entity])
 
     print('Entity created: {}'.format(response))
     
