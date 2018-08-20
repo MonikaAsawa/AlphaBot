@@ -106,7 +106,6 @@ def recommendProducts(req):
     
     response = recommend_selling_prodNames(selected_sub_category)
     
-    response = "Working on it!!!"
     print("del did product_category return anything",response)
     return response
 

@@ -45,7 +45,7 @@ def recommend_selling_prodCat():
     top_3_sub_cat = sub_cat_freq[:TOP_HOW_MANY]
     
     
-    response = 'Hi' + "\n" + 'May I know what would you like to buy today? '
+    response = 'Hi' + "\n" + 'What would you like to buy today? '
     for i in top_3_sub_cat.index.tolist():
         response += "\n" + i
         #response.append(i)
