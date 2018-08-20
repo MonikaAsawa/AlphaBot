@@ -244,8 +244,9 @@ def create_productNames(productCategories):
                         
                         count+=1
                         
-                        if(count == 170):
+                        if(count == 150):
                             try:
+                                print("Going for sleep for 6 seconds")
                                 #Wait for 60 seconds
                                 time.sleep(60)
                                 

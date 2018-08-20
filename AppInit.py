@@ -8,6 +8,7 @@ Created on Sun Aug 12 18:52:07 2018
 from DialogFlow import createEntities,delete_all_existing_entities,create_productNames
 from SuperStore_Product import loadProductCat
 from google.api_core.exceptions import ResourceExhausted
+import time
 
 def setUpApp():
     
@@ -18,10 +19,16 @@ def setUpApp():
         '1) Delete Existing Entities'
         delete_all_existing_entities()
         print("Existing entities deleted")
+        
+        #Wait for 60 seconds
+        time.sleep(60)
   
         '2) Load Product Entity Type'
         productCategories = loadProductCat()
         createEntities(productCategories)
+        
+        #Wait for 60 seconds
+        time.sleep(60)
         
         '3) Load Product Entity Type'
     
