@@ -249,7 +249,7 @@ def create_productNames(productCategories):
                         
                         count+=1
                         
-                        productName.replace('"','')
+                        productName = productName.replace('"','')
                         
                         try:
                             create_entity(entity_type_id, productName, productName)
