@@ -217,9 +217,9 @@ def create_productNames(productCategories):
     
     try:
         
-        print("Going for sleep for 45 seconds")
+        #print("Going for sleep for 45 seconds")
         #Wait for 60 seconds
-        time.sleep(60)
+        #time.sleep(60)
         
         count = 0
         
@@ -261,7 +261,7 @@ def create_productNames(productCategories):
                         except ResourceExhausted:
                              print("Either out of resource quota or reaching rate limiting. The client should look for google.rpc.QuotaFailure error detail for more information.")
         
-                        if(count % 50 == 0):
+                        if(count % 100 == 0):
                             try:
                                 print("Going for sleep for 45 seconds")
                                 #Wait for 60 seconds
