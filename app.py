@@ -59,6 +59,8 @@ def webhook():
     print("Going to check action value")
     print("del lets print req",req)
     
+    res=''
+    
     try:
         if action == 'promptProductCategory':
             print("promptProductCategory Action value matched")
