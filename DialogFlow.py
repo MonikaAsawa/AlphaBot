@@ -9,7 +9,8 @@ import dialogflow_v2 as dialogflow
 import re
 from random import randint
 import google.api_core.exceptions as GError
-from google.api_core.exceptions import NotFound, InvalidArgument, FailedPrecondition
+from google.api_core.exceptions import NotFound, InvalidArgument, FailedPrecondition, ResourceExhausted
+import time
 
 from SuperStore_Product import loadProductNames
 
@@ -235,9 +236,22 @@ def create_productNames(productCategories):
                     
                     productNames = loadProductNames(entityName)
                     
+                    count = 0
+                    
                     for productName in productNames:
                         
                         print("Creating Product Name: ", productName)
+                        
+                        count+=1
+                        
+                        if(count == 170):
+                            try:
+                                #Wait for 60 seconds
+                                time.sleep(60)
+                                
+                            except KeyboardInterrupt:
+                                print('\n\nKeyboard exception received. Exiting.')
+                                exit()
                         
                         try:
                             create_entity(entity_type_id, productName, productName)
@@ -245,6 +259,10 @@ def create_productNames(productCategories):
                         except InvalidArgument as error:
                             print("Error creatinf Entity", error)
                             continue
+                        
+                        except ResourceExhausted:
+                             print("Either out of resource quota or reaching rate limiting. The client should look for google.rpc.QuotaFailure error detail for more information.")
+        
     
     except NotFound:
         print("EntityType not found")
