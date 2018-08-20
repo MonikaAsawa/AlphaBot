@@ -157,7 +157,6 @@ def check_if_product_selected(parameters):
     params['FurnishingsrSelection'] = parameters.get('Furnishings')
     params['BookcasesSelection'] = parameters.get('Bookcases')
     
-    print(np.dtype(params))
     print(params)
     
     return error_response.strip(), params 
