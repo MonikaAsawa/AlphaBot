@@ -9,7 +9,7 @@ import dialogflow_v2 as dialogflow
 import re
 from random import randint
 import google.api_core.exceptions as GError
-from google.api_core.exceptions import NotFound,InvalidArgument
+from google.api_core.exceptions import NotFound, InvalidArgument, FailedPrecondition
 
 from SuperStore_Product import loadProductNames
 
@@ -91,6 +91,27 @@ def create_entity_type(display_name, kind):
     
     print('Entity type created: \n{}'.format(response))
     print("create_entity_type method ended")    
+    
+    
+def createEntities(productCategories):
+    
+    print("createEntities method started")
+    
+    print("Number of productCategories to be loaded",len(productCategories))
+    
+    for productType in productCategories:
+        
+        print("Creating Entity Type:" , productType)
+        
+        try:
+            
+            create_entity_type(productType,productType)
+        
+        except FailedPrecondition as error:
+            print("Error creating Entity Type", error)
+            continue
+        
+    print("createEntities method started")
     
 def list_entity_types():
     

@@ -5,7 +5,7 @@ Created on Sun Aug 12 18:52:07 2018
 @author: Monika Asawa
 """
 
-from DialogFlow import create_entity_type,delete_all_existing_entities,create_productNames
+from DialogFlow import createEntities,delete_all_existing_entities,create_productNames
 from SuperStore_Product import loadProductCat
 from google.api_core.exceptions import ResourceExhausted
 
@@ -23,18 +23,11 @@ def setUpApp():
         
         '2) Load Product Entity Type'
         productCategories = loadProductCat()
-        print("Number of productCategories to be loaded",len(productCategories))
-    
-        for productType in productCategories:
-            print(productType)
-            print(type(productType))
-            print(str(productType))
-            create_entity_type(productType,productType)
+        createEntities(productCategories)
         
         '3) Load Product Entity Type'
     
         productCategories = loadProductCat()
-        
         create_productNames(productCategories)
         
         
