@@ -78,9 +78,9 @@ def recommend_selling_prodNames(selected_sub_category):
     top_3_product_names = product_freq[:TOP_HOW_MANY]
     top_3_product_names.index.tolist()
     
-    response =  'These are our top products names'
+    response =  'Here you go!' + "\n" + 'Look out our top ' + TOP_HOW_MANY + " " +selected_sub_category
     for i in top_3_product_names.index.tolist():
-        response += "\n" + i
+        response += "\n\n" + i
         
     print(response)
     
