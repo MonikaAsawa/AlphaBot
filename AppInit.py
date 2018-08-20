@@ -5,7 +5,7 @@ Created on Sun Aug 12 18:52:07 2018
 @author: Monika Asawa
 """
 
-from DialogFlow import create_entity_type,delete_all_existing_entities,create_entity
+from DialogFlow import create_entity_type,delete_all_existing_entities,create_productNames
 from SuperStore_Product import loadProductCat
 from google.api_core.exceptions import ResourceExhausted
 
@@ -33,7 +33,7 @@ def setUpApp():
     
         productCategories = loadProductCat()
         
-        create_entity(productCategories)
+        create_productNames(productCategories)
         
         
     except ResourceExhausted:
