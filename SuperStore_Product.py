@@ -32,11 +32,11 @@ def provide_recent_quarter_data():
     return recent_quarter_data
 
 #----------------------------
+recent_quarter_data = provide_recent_quarter_data()
+#----------------------------
 
 'I want to find top 3 sub categories in Furniture Category'
 def recommend_selling_prodCat():
-    
-    recent_quarter_data = provide_recent_quarter_data()
     
     sub_cat_freq = pd.DataFrame(recent_quarter_data.groupby('Sub-Category')['Quantity'].sum())
     
@@ -66,14 +66,12 @@ def recommend_selling_prodCat():
 
 
 def suggest_selling_prodNames(selected_sub_category):
+
+    recent_data = recent_quarter_data.loc[recent_quarter_data['Sub-Category'] == selected_sub_category]
     
-    recent_quarter_data = provide_recent_quarter_data()
+    print("No of records in recent_data for selected sub category is ",np.shape(recent_data))
     
-    recent_quarter_data = recent_quarter_data.loc[recent_quarter_data['Sub-Category'] == selected_sub_category]
-    
-    print("No of records in recent_quarter_data for selected sub category is ",np.shape(recent_quarter_data))
-    
-    product_freq = pd.DataFrame(recent_quarter_data.groupby('Product Name')['Quantity'].sum())
+    product_freq = pd.DataFrame(recent_data.groupby('Product Name')['Quantity'].sum())
     
     print("No of products in frequency count",np.shape(product_freq))
     
