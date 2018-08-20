@@ -10,7 +10,7 @@ import os
 from flask import Flask, request, make_response, jsonify
 from pymessenger.bot import Bot
 
-from SuperStore_Product import recommend_selling_prodCat
+from SuperStore_Product import recommend_selling_prodCat, recommend_selling_prodNames
 from AppInit import setUpApp
 
 import json
@@ -102,7 +102,9 @@ def recommendProducts(req):
     print('Dialogflow Parameters:')
     print(json.dumps(parameters, indent=4))
     
-    print(parameters.get('productCategory'))
+    selected_sub_category = parameters.get('productCategory')
+    
+    response = recommend_selling_prodNames(selected_sub_category)
     
     response = "Working on it!!!"
     print("del did product_category return anything",response)
