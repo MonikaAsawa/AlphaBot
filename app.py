@@ -37,7 +37,7 @@ def setup_app():
     
     print("Setup_app method ends")
  
-setup_app()
+#setup_app()
 
 
 @app.route('/', methods=['POST'])
@@ -102,7 +102,7 @@ def recommendProducts(req):
     print('Dialogflow Parameters:')
     print(json.dumps(parameters, indent=4))
     
-    parameters.get('productCategory')
+    print(parameters.get('productCategory'))
     
     response = "Working on it!!!"
     print("del did product_category return anything",response)
