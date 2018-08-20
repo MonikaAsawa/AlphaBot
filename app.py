@@ -107,8 +107,8 @@ def product_category():
 def suggestProducts(req):
     parameters = req['queryResult']['parameters']
     
-    print('Dialogflow Parameters:')
-    print(json.dumps(parameters, indent=4))
+    #print('Dialogflow Parameters:')
+    #print(json.dumps(parameters, indent=4))
     
     selected_sub_category = parameters.get('productCategory')
     
