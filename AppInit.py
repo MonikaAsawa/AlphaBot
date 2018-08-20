@@ -27,6 +27,8 @@ def setUpApp():
     
         for productType in productCategories:
             print(productType)
+            print(type(productType))
+            print(str(productType))
             create_entity_type(productType,productType)
         
         '3) Load Product Entity Type'
