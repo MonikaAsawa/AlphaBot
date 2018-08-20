@@ -85,12 +85,15 @@ def suggest_selling_prodNames(selected_sub_category):
     
     top_3_prodNames = top_3_product_names.index.tolist()
     
-    response =  'Here you go!' + "\n" + 'Look out our top ' + TOP_HOW_MANY + " " +selected_sub_category
+    response =  'Here you go!' + "\n" + 'Look out our top products' 
+    
+    #+ TOP_HOW_MANY + " " +selected_sub_category
+    
     print(response)
     
     for i in top_3_prodNames:
         print(i)
-        response += "\n\n" + i
+        response += "\n" + i
         
     print("response ::", response)
     
