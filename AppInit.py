@@ -18,12 +18,10 @@ def setUpApp():
         '1) Delete Existing Entities'
         #delete_all_existing_entities()
         #print("Existing entities deleted")
-        
-        
-        
+  
         '2) Load Product Entity Type'
-        productCategories = loadProductCat()
-        createEntities(productCategories)
+        #productCategories = loadProductCat()
+        #createEntities(productCategories)
         
         '3) Load Product Entity Type'
     
