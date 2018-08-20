@@ -164,6 +164,8 @@ def delete_all_existing_entities():
 # [START dialogflow_create_entity]
 def create_entity(entity_type_id, entity_value, synonyms):
     """Create an entity of the given entity type."""
+    
+    print("create_entity method started")
 
     # Note: synonyms must be exactly [entity_value] if the
     # entity_type's kind is KIND_LIST
@@ -180,27 +182,41 @@ def create_entity(entity_type_id, entity_value, synonyms):
         entity_type_path, [entity])
 
     print('Entity created: {}'.format(response))
+    
+    print("create_entity method ended")
+    
+    
 # [END dialogflow_create_entity]
 
 def create_productNames(productCategories):
     
-    print("delete_all_existing_entities method started")
+    print("create_productNames method started")
     
     try:
+        
+        print("Product Categories :: ",productCategories )
         
         entity_displayNames = get_entity_displayNames()
         
         for entityName in entity_displayNames:
+            
+            print("Entity Name :: ",entityName)
             
             if entityName in productCategories:
                 
                 print("Generating entities of type: ",entityName)
                 
                 entity_type_ids = _get_entity_type_ids(entityName)
+                
+                print("No of entity type ids are: ",len[entity_type_ids])
             
                 for entity_type_id in entity_type_ids:
                     
-                    for productName in loadProductNames(entityName):
+                    productNames = loadProductNames(entityName)
+                    
+                    print("No of product Names: ",len[productNames])
+                    
+                    for productName in productNames:
                         
                         create_entity(entity_type_id, productName, productName)
      
@@ -211,4 +227,4 @@ def create_productNames(productCategories):
     except GError as error:
         return error
     
-    print("delete_all_existing_entities method ended")
+    print("create_productNames method ended")
