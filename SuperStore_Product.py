@@ -71,7 +71,11 @@ def recommend_selling_prodNames(selected_sub_category):
     
     recent_quarter_data = recent_quarter_data.loc[recent_quarter_data['Sub-Category'] == selected_sub_category]
     
+    print("No of records in recent_quarter_data for selected sub category is ",np.shape(recent_quarter_data))
+    
     product_freq = pd.DataFrame(recent_quarter_data.groupby('Product Name')['Quantity'].sum())
+    
+    print("No of products in frequency count",np.shape(product_freq))
     
     product_freq = product_freq.sort_values(by="Quantity", ascending =False)
     
