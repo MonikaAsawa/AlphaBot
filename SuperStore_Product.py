@@ -136,19 +136,29 @@ def loadProductNames(selected_sub_category):
 def check_if_product_selected(parameters):
     
     params = {}
+    error_response = ""
     
     tableSelection = parameters.get('Tables')
     chairSelection = parameters.get('Chairs')
     furnishingsSelection = parameters.get('Furnishings')
     bookcaseSelection = parameters.get('Bookcases')
     
+    print(len(tableSelection))
+    print(len(chairSelection))
+    print(len(furnishingsSelection))
+    print(len(bookcaseSelection))
+    
     if(len(tableSelection)==0 & len(chairSelection)==0 & len(furnishingsSelection)==0 & len(bookcaseSelection)==0):
+        
         error_response = 'Please specify the correct product name you would like to buy'
         
     params['TableSelection'] = parameters.get('Tables')
     params['ChairSelection'] = parameters.get('Chairs')
     params['FurnishingsrSelection'] = parameters.get('Furnishings')
     params['BookcasesSelection'] = parameters.get('Bookcases')
+    
+    print(np.dtype(params))
+    print(params)
     
     return error_response.strip(), params 
 
