@@ -93,7 +93,7 @@ def suggest_selling_prodNames(selected_sub_category):
     
     for i in top_3_prodNames:
         print(i)
-        response += "\n" + i
+        response += "\n\n" + i
         
     print("response ::", response)
     
