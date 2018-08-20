@@ -169,7 +169,7 @@ def create_entity(entity_type_id, entity_value, synonyms):
 
     # Note: synonyms must be exactly [entity_value] if the
     # entity_type's kind is KIND_LIST
-    synonyms = synonyms or [entity_value]
+    synonyms = ""
 
     entity_type_path = entity_types_client.entity_type_path(
         project_id, entity_type_id)
@@ -214,9 +214,9 @@ def create_productNames(productCategories):
                     
                     productNames = loadProductNames(entityName)
                     
-                    print("No of product Names: ", productNames)
-                    
                     for productName in productNames:
+                        
+                        print("Creating Product Name: ", productName)
                         
                         create_entity(entity_type_id, productName, productName)
      
