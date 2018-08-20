@@ -96,15 +96,15 @@ def loadProducts():
     Products = pd.DataFrame(ordersDf, columns=['Sub-Category','Product Name'],index =None)
     
     Products.columns = ['Product_Category','Product_Name']
-    
-    grouped = Products.groupby(['Product_Category'])
      
-    return grouped
+    return Products
 
 'This function will generate the product category as entity types'
 def loadProductCat():
     
-    Products = loadProducts()
+    grouped = loadProducts()
+    
+    Products = grouped.groupby(['Product_Category'])
     
     ProductsEn = Products.Product_Category.unique().tolist()
      
