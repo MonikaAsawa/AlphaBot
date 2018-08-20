@@ -104,9 +104,7 @@ def loadProductCat():
     
     grouped = loadProducts()
     
-    Products = grouped.groupby(['Product_Category'])
-    
-    ProductsEn = Products.Product_Category.unique().tolist()
+    ProductsEn = grouped.Product_Category.unique().tolist()
      
     return ProductsEn
 
