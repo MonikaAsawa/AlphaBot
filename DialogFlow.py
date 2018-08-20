@@ -245,16 +245,6 @@ def create_productNames(productCategories):
                     
                     for productName in productNames:
                         
-                        if(count % 100 == 0):
-                            try:
-                                print("Going for sleep for 45 seconds")
-                                #Wait for 60 seconds
-                                time.sleep(45)
-                                
-                            except KeyboardInterrupt:
-                                print('\n\nKeyboard exception received. Exiting.')
-                                exit()
-                        
                         print("Creating Product Name: ", productName)
                         
                         count+=1
@@ -274,6 +264,18 @@ def create_productNames(productCategories):
                             #Wait for 60 seconds
                             time.sleep(45)
                             continue
+                        
+                        #--------------------
+                        
+                        if(count % 100 == 0):
+                            try:
+                                print("Going for sleep for 45 seconds")
+                                #Wait for 60 seconds
+                                time.sleep(45)
+                                
+                            except KeyboardInterrupt:
+                                print('\n\nKeyboard exception received. Exiting.')
+                                exit()
                         
     except ResourceExhausted as error:
         print("ResourceExhausted", error)
