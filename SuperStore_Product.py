@@ -149,7 +149,7 @@ def check_if_product_selected(parameters):
     print(len(bookcaseSelection))
     
     if(len(tableSelection)==0 & len(chairSelection)==0 & len(furnishingsSelection)==0 & len(bookcaseSelection)==0):
-        
+        print("why are going in here")
         error_response = 'Please specify the correct product name you would like to buy'
         
     params['TableSelection'] = parameters.get('Tables')
