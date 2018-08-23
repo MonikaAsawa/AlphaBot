@@ -161,7 +161,7 @@ def check_if_product_selected(parameters):
 
 def recommendProductsNames(params):
     
-    selectedProducts = ""
+    selectedProducts = []
     
     if(params.get('TableSelection')):
         
@@ -170,7 +170,11 @@ def recommendProductsNames(params):
             selectedProducts +=  " , " + str(i)
     
     if(params.get('ChairSelection')):
+        
         print("Check 1",params.get('ChairSelection'))
+        
+        selectedProducts.append(params.get('ChairSelection'))
+        
         selectedProducts +=  " , '" + params.get('ChairSelection') + "'"
 #==============================================================================
 #         for i in params.get('ChairSelection'):
@@ -186,7 +190,7 @@ def recommendProductsNames(params):
         for i in params.get('BookcasesSelection'):
             selectedProducts +=  " , " + str(i)
             
-    selectedProducts = selectedProducts[3:]
+    #selectedProducts = selectedProducts[3:]
         
     print("No of products selected :",len(selectedProducts))
     print(selectedProducts)
