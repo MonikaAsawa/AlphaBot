@@ -180,7 +180,7 @@ def recommendProductsNames(params):
         for i in params.get('BookcasesSelection'):
             selectedProducts +=  " , " + str(i)
             
-    selectedProducts = selectedProducts[1:]
+    selectedProducts = selectedProducts[3:]
         
     print("No of products selected :",len(selectedProducts))
     print(selectedProducts)
