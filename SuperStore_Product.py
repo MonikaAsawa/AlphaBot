@@ -177,12 +177,11 @@ def recommendProductsNames(params):
         selectedProducts.append(params.get('BookcasesSelection'))
         
     print("No of products selected :",len(selectedProducts))
+    print(selectedProducts)
     
     recProducts = recommendProducts(selectedProducts)
     
     response =  'Great Choice!' + "\n"
-    
-    print(selectedProducts)
     
     print(response)
     
