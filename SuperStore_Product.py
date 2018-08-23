@@ -198,7 +198,7 @@ def recommendProductsNames(params):
     
     print(response)
     
-    if(len(selectedProducts)>0):
+    if(len(recProducts)>0 and len(selectedProducts)>0):
         
         selProducts =''
         
@@ -216,6 +216,10 @@ def recommendProductsNames(params):
         for i in recProducts:
             print(i)
             response += "\n\n" + i
+            
+    elif(len(selectedProducts)>0):
+        
+        response += 'Anything else for today?'
             
     print("response ::", response)
     
