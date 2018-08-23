@@ -179,9 +179,7 @@ def recommendProductsNames(params):
         
         print("Check 1",params.get('FurnishingsrSelection'))
         
-        for i in params.get('BookcasesSelection'):
-            print(i)
-            selectedProducts.append(i)
+        selectedProducts = selectedProducts + params.get('BookcasesSelection')
     
     if(params.get('BookcasesSelection')):
         for i in params.get('BookcasesSelection'):
