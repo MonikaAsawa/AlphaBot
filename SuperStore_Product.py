@@ -8,6 +8,8 @@ Created on Sun Aug 19 00:41:42 2018
 import pandas as pd
 import numpy as np
 
+from ProductRecommender import recommendProducts
+
 TOP_HOW_MANY = 3
 
 #----------------------------
@@ -143,24 +145,6 @@ def check_if_product_selected(parameters):
     furnishingsSelection = parameters.get('Furnishings')
     bookcaseSelection = parameters.get('Bookcases')
     
-    print(len(tableSelection))
-    print(len(chairSelection))
-    print(len(furnishingsSelection))
-    print(len(bookcaseSelection))
-    
-    if(len(tableSelection)==0):
-        print("tableSelection")
-    
-    if(len(chairSelection)==0):
-        print("tableSelection")
-    
-    if(len(furnishingsSelection)==0):
-        print("tableSelection")
-    
-    if(len(bookcaseSelection)==0):
-        print("tableSelection")
-    
-    
     if(len(tableSelection)==0 and len(chairSelection)==0 and len(furnishingsSelection)==0 and len(bookcaseSelection)==0):
         print("why are going in here")
         error_response = 'Please specify the correct product name you would like to buy'
@@ -174,5 +158,46 @@ def check_if_product_selected(parameters):
     
     return error_response.strip(), params 
 
+
 def recommendProductsNames(params):
-    return 'Humpty Dumpty sat on a wall'
+    
+    selectedProducts =[]
+    
+    if(params.get('TableSelection')):
+        selectedProducts.append(params.get('TableSelection'))
+        #selProduct += params.get('TableSelection')
+    
+    if(params.get('ChairSelection')):
+        selectedProducts.append(params.get('ChairSelection'))
+        
+    if(params.get('FurnishingsrSelection')):
+        selectedProducts.append(params.get('FurnishingsrSelection'))
+    
+    if(params.get('BookcasesSelection')):
+        selectedProducts.append(params.get('BookcasesSelection'))
+        
+    print("No of products selected :",len(selectedProducts))
+    
+    recProducts = recommendProducts(selectedProducts)
+    
+    response =  'Great Choice!' + "\n"
+    
+    if(len(selectedProducts)>0):
+        
+        selProducts = ''
+        
+        for product in selectedProducts:
+            selProducts += ", "+ product
+        selProducts = selProducts[1:]
+        
+        response += 'People who bought ' +selProducts + 'also bought '
+    
+        print(response)
+        
+        for i in recProducts:
+            print(i)
+            response += "\n\n" + i
+            
+    print("response ::", response)
+    
+    return response
