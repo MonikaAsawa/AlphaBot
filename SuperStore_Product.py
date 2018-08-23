@@ -166,10 +166,14 @@ def recommendProductsNames(params):
     if(params.get('TableSelection')):
         
         for i in params.get('TableSelection'):
+            
             selectedProducts +=  " , " + str(i)
     
     if(params.get('ChairSelection')):
+        print(params.get('ChairSelection'))
+    
         for i in params.get('ChairSelection'):
+            print(i)
             selectedProducts +=  " , " + str(i)
         
     if(params.get('FurnishingsrSelection')):
