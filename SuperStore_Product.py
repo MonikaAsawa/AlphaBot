@@ -175,16 +175,11 @@ def recommendProductsNames(params):
         
         selectedProducts.append(params.get('ChairSelection'))
         
-        selectedProducts +=  " , '" + params.get('ChairSelection') + "'"
-#==============================================================================
-#         for i in params.get('ChairSelection'):
-#             print(i)
-#             selectedProducts +=  " , " + str(i)
-#==============================================================================
-        
     if(params.get('FurnishingsrSelection')):
-        for i in params.get('FurnishingsrSelection'):
-            selectedProducts +=  " , " + str(i)
+        
+        print("Check 1",params.get('FurnishingsrSelection'))
+        
+        selectedProducts.append(params.get('FurnishingsrSelection'))
     
     if(params.get('BookcasesSelection')):
         for i in params.get('BookcasesSelection'):
