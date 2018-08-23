@@ -161,20 +161,26 @@ def check_if_product_selected(parameters):
 
 def recommendProductsNames(params):
     
-    selectedProducts =[]
+    selectedProducts = ""
     
     if(params.get('TableSelection')):
-        selectedProducts.append(params.get('TableSelection'))
-        #selProduct += params.get('TableSelection')
+        
+        for i in params.get('TableSelection'):
+            selectedProducts +=  " , " + str(i)
     
     if(params.get('ChairSelection')):
-        selectedProducts.append(params.get('ChairSelection'))
+        for i in params.get('ChairSelection'):
+            selectedProducts +=  " , " + str(i)
         
     if(params.get('FurnishingsrSelection')):
-        selectedProducts.append(params.get('FurnishingsrSelection'))
+        for i in params.get('FurnishingsrSelection'):
+            selectedProducts +=  " , " + str(i)
     
     if(params.get('BookcasesSelection')):
-        selectedProducts.append(params.get('BookcasesSelection'))
+        for i in params.get('BookcasesSelection'):
+            selectedProducts +=  " , " + str(i)
+            
+    selectedProducts = selectedProducts[1:]
         
     print("No of products selected :",len(selectedProducts))
     print(selectedProducts)
@@ -187,15 +193,7 @@ def recommendProductsNames(params):
     
     if(len(selectedProducts)>0):
         
-        selProducts = ''
-        
-        for product in selectedProducts:
-            selProducts += ", "+ product
-        selProducts = selProducts[1:]
-        
-        print(selProducts)
-        
-        response += 'People who bought ' +selProducts + 'also bought '
+        response += 'People who bought ' +selectedProducts + 'also bought '
     
         print(response)
         
