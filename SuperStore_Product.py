@@ -180,6 +180,7 @@ def recommendProductsNames(params):
         print("Check 1",params.get('FurnishingsrSelection'))
         
         for i in params.get('BookcasesSelection'):
+            print(i)
             selectedProducts.append(i)
     
     if(params.get('BookcasesSelection')):
