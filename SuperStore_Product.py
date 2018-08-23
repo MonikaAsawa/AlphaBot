@@ -198,7 +198,16 @@ def recommendProductsNames(params):
     
     if(len(selectedProducts)>0):
         
-        response += 'People who bought ' +selectedProducts + 'also bought '
+        selProducts =''
+        
+        for i in selectedProducts:
+            print(i)
+            selProducts += ", "+ i 
+        selProducts = selProducts[1:]
+        print(selProducts)
+        
+        
+        response += 'People who bought ' + selProducts + ' also bought '
     
         print(response)
         
