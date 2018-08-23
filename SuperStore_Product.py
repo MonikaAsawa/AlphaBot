@@ -171,7 +171,7 @@ def recommendProductsNames(params):
     
     if(params.get('ChairSelection')):
         print("Check 1",params.get('ChairSelection'))
-        selectedProducts +=  " , " + params.get('ChairSelection')
+        selectedProducts +=  " , '" + params.get('ChairSelection') + "'"
 #==============================================================================
 #         for i in params.get('ChairSelection'):
 #             print(i)
