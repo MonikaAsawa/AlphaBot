@@ -173,7 +173,7 @@ def recommendProductsNames(params):
         
         print("Check 1",params.get('ChairSelection'))
         
-        selectedProducts.append(params.get('ChairSelection'))
+        selectedProducts = selectedProducts + params.get('ChairSelection')
         
     if(params.get('FurnishingsrSelection')):
         
@@ -218,7 +218,7 @@ def recommendProductsNames(params):
             response += "\n\n" + i
             
     elif(len(selectedProducts)>0):
-        
+        print("Couldn't find any recommendations for the selected productset")
         response += 'Anything else for today?'
             
     print("response ::", response)
