@@ -37,11 +37,13 @@ def generateRules():
     
     basket_sb = basket.applymap(encode_units)
     
+    print("Shape of basket_sb data : ", np.shape(basket_sb))
+    
     #----------------------------------------------------------------------
     
     'Generating frequent item sets that have a support of at least 0.1%'
 
-    frequent_itemsets = apriori(basket_sb, min_support=0.001, use_colnames=True)
+    frequent_itemsets = apriori(basket_sb, min_support=0.0001, use_colnames=True)
 
     'Determining length of each itemset'
     frequent_itemsets['length'] = frequent_itemsets['itemsets'].apply(lambda x: len(x))
